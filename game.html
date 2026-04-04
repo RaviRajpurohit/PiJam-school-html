@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Builder Challenge</title>
+  <style>
+    :root {
+      --sky: #dff4ff;
+      --blue: #2374e1;
+      --navy: #123261;
+      --yellow: #ffd44d;
+      --green: #2fa36b;
+      --pink: #ff7aa2;
+      --card: #ffffff;
+      --shadow: 0 14px 30px rgba(18, 50, 97, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", "Comic Sans MS", sans-serif;
+      color: var(--navy);
+      background:
+        radial-gradient(circle at top left, #ffffff 0, #ffffff 10%, transparent 11%),
+        linear-gradient(180deg, #bde8ff 0%, var(--sky) 45%, #fffdf4 100%);
+      min-height: 100vh;
+      padding: 24px 16px 40px;
+    }
+
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--navy);
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 12px auto 0;
+      font-size: 1.1rem;
+      line-height: 1.5;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .card {
+      background: var(--card);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      border: 3px solid rgba(35, 116, 225, 0.08);
+    }
+
+    .card h2,
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .student-form {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    label {
+      font-weight: 700;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 2px solid #cce0ff;
+      font-size: 1rem;
+    }
+
+    .tip-box {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .tip {
+      border-radius: 18px;
+      padding: 14px;
+      font-size: 0.98rem;
+      line-height: 1.45;
+    }
+
+    .tip.html {
+      background: #fff3bf;
+    }
+
+    .tip.css {
+      background: #d8f8eb;
+    }
+
+    .round-box {
+      background: #f7fbff;
+      border-radius: 20px;
+      padding: 18px;
+      border: 2px dashed #b6d3ff;
+    }
+
+    .status-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 14px 0 16px;
+    }
+
+    .pill {
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      background: #edf5ff;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    button {
+      border: none;
+      border-radius: 16px;
+      padding: 14px 16px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      box-shadow: 0 10px 20px rgba(18, 50, 97, 0.12);
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+    }
+
+    .choice-btn {
+      background: linear-gradient(180deg, #ffffff 0%, #eef6ff 100%);
+      color: var(--navy);
+      border: 2px solid #cfe3ff;
+      min-height: 72px;
+    }
+
+    .choice-btn.correct {
+      background: #d8f8eb;
+      border-color: #67c596;
+    }
+
+    .choice-btn.wrong {
+      background: #ffe2ea;
+      border-color: #ff96b3;
+    }
+
+    .primary-btn {
+      background: linear-gradient(180deg, var(--yellow) 0%, #ffbe2e 100%);
+      color: #593c00;
+    }
+
+    .secondary-btn {
+      background: linear-gradient(180deg, #3b8cff 0%, #2168d6 100%);
+      color: white;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .message {
+      margin-top: 16px;
+      min-height: 58px;
+      border-radius: 16px;
+      padding: 14px;
+      background: #edf7ff;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+
+    .message.good {
+      background: #dff8ea;
+      color: #14603e;
+    }
+
+    .message.oops {
+      background: #ffe7ee;
+      color: #933054;
+    }
+
+    .mascot-wrap {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 18px;
+      padding: 14px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #eef7ff 0%, #fff9e8 100%);
+      border: 2px solid #d7e8ff;
+    }
+
+    .mascot {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      margin: 0 auto;
+      transition: transform 0.2s ease;
+    }
+
+    .mascot.bounce {
+      transform: translateY(-4px) rotate(-2deg);
+    }
+
+    .mascot-head {
+      position: absolute;
+      inset: 8px 14px 24px 14px;
+      background: #ffdca8;
+      border: 3px solid #123261;
+      border-radius: 50%;
+    }
+
+    .mascot-hair {
+      position: absolute;
+      top: 2px;
+      left: 22px;
+      width: 56px;
+      height: 30px;
+      background: #123261;
+      border-radius: 22px 22px 12px 12px;
+    }
+
+    .eye {
+      position: absolute;
+      top: 36px;
+      width: 10px;
+      height: 10px;
+      background: #123261;
+      border-radius: 50%;
+    }
+
+    .eye.left {
+      left: 34px;
+    }
+
+    .eye.right {
+      right: 34px;
+    }
+
+    .mouth {
+      position: absolute;
+      left: 50%;
+      bottom: 22px;
+      width: 26px;
+      height: 12px;
+      margin-left: -13px;
+      border-bottom: 4px solid #933054;
+      border-radius: 0 0 20px 20px;
+    }
+
+    .mascot.sad .mouth {
+      bottom: 18px;
+      border-bottom: none;
+      border-top: 4px solid #933054;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .mascot.wow .mouth {
+      width: 16px;
+      height: 16px;
+      margin-left: -8px;
+      border: 4px solid #933054;
+      border-radius: 50%;
+      border-top-color: #933054;
+      border-right-color: #933054;
+      border-left-color: #933054;
+      border-bottom-color: #933054;
+      background: transparent;
+    }
+
+    .mascot-body {
+      position: absolute;
+      left: 26px;
+      right: 26px;
+      bottom: 0;
+      height: 34px;
+      background: linear-gradient(180deg, #ff7aa2 0%, #ef5685 100%);
+      border: 3px solid #123261;
+      border-radius: 20px 20px 12px 12px;
+    }
+
+    .mascot-spark {
+      position: absolute;
+      top: 8px;
+      right: 4px;
+      font-size: 24px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .mascot.win .mascot-spark,
+    .mascot.happy .mascot-spark,
+    .mascot.wow .mascot-spark {
+      opacity: 1;
+    }
+
+    .mascot-text {
+      font-size: 1rem;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    .preview {
+      display: grid;
+      gap: 14px;
+    }
+
+    .mini-site {
+      background: linear-gradient(180deg, #fef6dc 0%, #fff 100%);
+      border-radius: 22px;
+      overflow: hidden;
+      border: 3px solid #ffe08f;
+    }
+
+    .mini-header {
+      background: linear-gradient(90deg, #2374e1 0%, #5ca2ff 100%);
+      color: white;
+      padding: 18px;
+    }
+
+    .mini-header h3 {
+      margin: 0 0 8px;
+      font-size: 1.3rem;
+    }
+
+    .mini-content {
+      padding: 18px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .mini-panel {
+      background: white;
+      border-radius: 16px;
+      padding: 14px;
+      border: 2px solid #ffe9a8;
+    }
+
+    .history {
+      margin-top: 12px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .history-item {
+      padding: 12px;
+      border-radius: 14px;
+      background: #f7fbff;
+      border: 2px solid #d9e9ff;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 900px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .student-form,
+      .tip-box,
+      .choices,
+      .mascot-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <h1>Website Builder Challenge</h1>
+      <p>
+        Help your school build a fun website. Pick the best answer in each round and learn one tiny idea about
+        <strong>HTML</strong> and <strong>CSS</strong> while you play.
+      </p>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Player Details</h2>
+        <div class="student-form">
+          <div>
+            <label for="studentName">Student Name</label>
+            <input id="studentName" type="text" placeholder="Aarav">
+          </div>
+          <div>
+            <label for="studentAge">Age</label>
+            <input id="studentAge" type="number" min="6" max="9" placeholder="7">
+          </div>
+          <div>
+            <label for="studentClass">Class</label>
+            <input id="studentClass" type="text" placeholder="Grade 2">
+          </div>
+        </div>
+
+        <div class="tip-box">
+          <div class="tip html">
+            <strong>HTML</strong> is the content of a webpage.
+            It adds things like headings, pictures, buttons, and text.
+          </div>
+          <div class="tip css">
+            <strong>CSS</strong> is the style of a webpage.
+            It changes colors, size, spacing, and makes the page look beautiful.
+          </div>
+        </div>
+
+        <div class="round-box">
+          <h3 id="roundTitle">Round 1</h3>
+
+          <div class="mascot-wrap">
+            <div class="mascot bounce happy" id="mascot">
+              <div class="mascot-hair"></div>
+              <div class="mascot-head">
+                <div class="eye left"></div>
+                <div class="eye right"></div>
+                <div class="mouth"></div>
+              </div>
+              <div class="mascot-body"></div>
+              <div class="mascot-spark" id="mascotSpark">★</div>
+            </div>
+            <div class="mascot-text" id="mascotText">
+              Hi friend. Type your name and let's build a fun school website together.
+            </div>
+          </div>
+
+          <p id="questionText"></p>
+
+          <div class="status-row">
+            <div class="pill" id="scorePill">Score: 0</div>
+            <div class="pill" id="progressPill">Question: 1 / 6</div>
+          </div>
+
+          <div class="choices" id="choicesBox"></div>
+
+          <div class="message" id="messageBox">
+            Type your name and then press <strong>Start Game</strong>.
+          </div>
+
+          <div class="actions">
+            <button class="primary-btn" id="startBtn">Start Game</button>
+            <button class="secondary-btn" id="nextBtn" disabled>Next Question</button>
+          </div>
+        </div>
+      </section>
+
+      <aside class="preview">
+        <section class="card">
+          <h2>Mini School Website Preview</h2>
+          <div class="mini-site">
+            <div class="mini-header">
+              <h3>Sunrise School</h3>
+              <p id="previewTagline">Welcome to our happy learning website.</p>
+            </div>
+            <div class="mini-content">
+              <div class="mini-panel" id="previewPanel1">
+                <strong>About Us</strong>
+                <p>We love reading, science, drawing, and kindness.</p>
+              </div>
+              <div class="mini-panel" id="previewPanel2">
+                <strong>Our Teachers</strong>
+                <p>Meet the caring teachers who help us learn every day.</p>
+              </div>
+              <div class="mini-panel" id="previewPanel3">
+                <strong>Contact</strong>
+                <p>Families can connect with the school and ask questions.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Saved Student History</h2>
+          <p>
+            Recent plays on this device are shown here so you can see who practiced and what score they got.
+          </p>
+          <div class="history" id="historyBox"></div>
+        </section>
+      </aside>
+    </div>
+
+  </div>
+
+  <script>
+    const rounds = [
+      {
+        title: "Round 1: Pick the best HTML idea",
+        question: "Which one is something HTML can add to a school website?",
+        explanation: "HTML adds the things we can see on the page, like headings, text, and pictures.",
+        correctIndex: 0,
+        choices: ["A big heading that says 'Welcome to Our School'", "Make the heading blue and rounded", "Add sparkle animation everywhere", "Change page spacing to 20px"]
+      },
+      {
+        title: "Round 2: Pick the best CSS idea",
+        question: "Which one is a CSS job?",
+        explanation: "CSS changes how the content looks, like color, size, shape, and layout.",
+        correctIndex: 2,
+        choices: ["Add a contact form", "Add a school logo image", "Make the button green and bigger", "Add the words 'About Our School'"]
+      },
+      {
+        title: "Round 3: Build the right school page",
+        question: "Which section is a good idea for a school website?",
+        explanation: "School websites should share helpful information for students and families.",
+        correctIndex: 1,
+        choices: ["Dragon training center", "School timetable", "Alien pizza shop", "Movie monster club"]
+      },
+      {
+        title: "Round 4: Help the homepage",
+        question: "What should be on the homepage first?",
+        explanation: "A homepage should welcome visitors and help them quickly understand the website.",
+        correctIndex: 3,
+        choices: ["A hidden page with no title", "Twenty tiny buttons", "Only a black screen", "A welcome message and clear menu"]
+      },
+      {
+        title: "Round 5: Think like a web designer",
+        question: "Which style is easiest for children and parents to read?",
+        explanation: "Good web design is simple, clear, and friendly.",
+        correctIndex: 0,
+        choices: ["Dark text with a light background", "Tiny yellow text on white", "Text jumping around the page", "Every word in a different color"]
+      },
+      {
+        title: "Round 6: Dream up your school site",
+        question: "Which idea would make a great next page for your school website?",
+        explanation: "A gallery helps show school life, student work, and happy memories.",
+        correctIndex: 2,
+        choices: ["Secret volcano map", "Robot banana market", "Student photo gallery", "Invisible homework cave"]
+      }
+    ];
+
+    const studentName = document.getElementById("studentName");
+    const studentAge = document.getElementById("studentAge");
+    const studentClass = document.getElementById("studentClass");
+    const roundTitle = document.getElementById("roundTitle");
+    const questionText = document.getElementById("questionText");
+    const choicesBox = document.getElementById("choicesBox");
+    const messageBox = document.getElementById("messageBox");
+    const scorePill = document.getElementById("scorePill");
+    const progressPill = document.getElementById("progressPill");
+    const startBtn = document.getElementById("startBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const historyBox = document.getElementById("historyBox");
+    const previewTagline = document.getElementById("previewTagline");
+    const previewPanel1 = document.getElementById("previewPanel1");
+    const previewPanel2 = document.getElementById("previewPanel2");
+    const previewPanel3 = document.getElementById("previewPanel3");
+    const mascot = document.getElementById("mascot");
+    const mascotText = document.getElementById("mascotText");
+
+    let currentRound = 0;
+    let score = 0;
+    let answered = false;
+
+    function getStorageData() {
+      try {
+        return JSON.parse(localStorage.getItem("websiteBuilderStudents")) || [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function setStorageData(data) {
+      localStorage.setItem("websiteBuilderStudents", JSON.stringify(data));
+    }
+
+    function renderHistory() {
+      const entries = getStorageData().slice(-6).reverse();
+      historyBox.innerHTML = "";
+
+      if (entries.length === 0) {
+        historyBox.innerHTML = '<div class="history-item">No student data saved yet on this device.</div>';
+        return;
+      }
+
+      entries.forEach((entry) => {
+        const item = document.createElement("div");
+        item.className = "history-item";
+        item.innerHTML = "<strong>" + escapeHtml(entry.name || "Student") + "</strong> | Age " +
+          escapeHtml(String(entry.age || "-")) + " | " +
+          escapeHtml(entry.className || "Class not added") +
+          "<br>Score: " + escapeHtml(String(entry.score)) +
+          " / " + rounds.length +
+          "<br>Played: " + escapeHtml(entry.playedAt);
+        historyBox.appendChild(item);
+      });
+    }
+
+    function escapeHtml(value) {
+      return value
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+    }
+
+    function updatePreview() {
+      const player = studentName.value.trim() || "our students";
+      previewTagline.textContent = "Welcome to the website made by " + player + ".";
+
+      if (score >= 2) {
+        previewPanel1.innerHTML = "<strong>About Us</strong><p>We are learning how HTML adds headings, words, and pictures.</p>";
+      }
+
+      if (score >= 4) {
+        previewPanel2.innerHTML = "<strong>School News</strong><p>Families can read updates, events, and happy class stories.</p>";
+      }
+
+      if (score >= 6) {
+        previewPanel3.innerHTML = "<strong>Student Gallery</strong><p>Our website can share art, projects, and big achievements.</p>";
+      }
+    }
+
+    function setMascotMood(mood, text) {
+      mascot.className = "mascot bounce " + mood;
+      mascotText.textContent = text;
+    }
+
+    function loadRound() {
+      const round = rounds[currentRound];
+      roundTitle.textContent = round.title;
+      questionText.textContent = round.question;
+      progressPill.textContent = "Question: " + (currentRound + 1) + " / " + rounds.length;
+      scorePill.textContent = "Score: " + score;
+      choicesBox.innerHTML = "";
+      messageBox.className = "message";
+      messageBox.innerHTML = "Choose your answer.";
+      setMascotMood("happy", "Read the question carefully. You can do it.");
+      answered = false;
+      nextBtn.disabled = true;
+
+      round.choices.forEach((choice, index) => {
+        const button = document.createElement("button");
+        button.className = "choice-btn";
+        button.textContent = choice;
+        button.addEventListener("click", () => selectChoice(index, button));
+        choicesBox.appendChild(button);
+      });
+    }
+
+    function selectChoice(index, buttonElement) {
+      if (answered) {
+        return;
+      }
+
+      answered = true;
+      const round = rounds[currentRound];
+      const buttons = choicesBox.querySelectorAll("button");
+
+      buttons.forEach((button, btnIndex) => {
+        button.disabled = true;
+        if (btnIndex === round.correctIndex) {
+          button.classList.add("correct");
+        }
+      });
+
+      if (index === round.correctIndex) {
+        score += 1;
+        buttonElement.classList.add("correct");
+        messageBox.className = "message good";
+        messageBox.innerHTML = "Correct! " + round.explanation;
+        setMascotMood("happy", "Yay. That was a smart answer.");
+      } else {
+        buttonElement.classList.add("wrong");
+        messageBox.className = "message oops";
+        messageBox.innerHTML = "Nice try! " + round.explanation;
+        setMascotMood("sad", "That one was tricky. Let's learn and try the next question.");
+      }
+
+      scorePill.textContent = "Score: " + score;
+      nextBtn.disabled = false;
+      updatePreview();
+    }
+
+    function saveStudentInfo(finalSave) {
+      const name = studentName.value.trim();
+      const age = studentAge.value.trim();
+      const className = studentClass.value.trim();
+
+      if (!name) {
+        messageBox.className = "message oops";
+        messageBox.innerHTML = "Please type the student name first.";
+        setMascotMood("wow", "I need your name before we start our website adventure.");
+        return false;
+      }
+
+      const history = getStorageData();
+      history.push({
+        name: name,
+        age: age || "-",
+        className: className || "Class not added",
+        score: score,
+        playedAt: new Date().toLocaleString(),
+        status: finalSave ? "finished" : "saved"
+      });
+
+      setStorageData(history);
+      renderHistory();
+
+      if (!finalSave) {
+        messageBox.className = "message good";
+        messageBox.innerHTML = "Student info saved on this device.";
+      }
+
+      return true;
+    }
+
+    function finishGame() {
+      const saved = saveStudentInfo(true);
+      if (!saved) {
+        return;
+      }
+
+      messageBox.className = "message good";
+      messageBox.innerHTML = "Great job, " + escapeHtml(studentName.value.trim()) + "! You finished with " +
+        score + " out of " + rounds.length + ". Now ask yourself: what page would you add to your school website?";
+      setMascotMood("win", "Amazing work. Your school website ideas are shining bright.");
+      nextBtn.disabled = true;
+      startBtn.textContent = "Play Again";
+    }
+
+    startBtn.addEventListener("click", () => {
+      currentRound = 0;
+      score = 0;
+      updatePreview();
+      setMascotMood("happy", "Let's play. Pick the best answer to build your school website.");
+      loadRound();
+    });
+
+    nextBtn.addEventListener("click", () => {
+      if (currentRound < rounds.length - 1) {
+        currentRound += 1;
+        loadRound();
+      } else {
+        finishGame();
+      }
+    });
+
+    renderHistory();
+    updatePreview();
+    setMascotMood("happy", "Hi friend. Type your name and let's build a fun school website together.");
+    questionText.textContent = "This game teaches children how HTML adds content and CSS makes it beautiful.";
+  </script>
+</body>
+</html>
