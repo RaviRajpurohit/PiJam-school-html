@@ -36,6 +36,156 @@
       margin: 0 auto;
     }
 
+    .welcome-screen {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: linear-gradient(180deg, rgba(172, 226, 255, 0.96) 0%, rgba(255, 247, 214, 0.98) 100%);
+      z-index: 20;
+    }
+
+    .welcome-screen.hidden {
+      display: none;
+    }
+
+    .welcome-card {
+      width: min(720px, 100%);
+      background: white;
+      border-radius: 28px;
+      padding: 26px;
+      box-shadow: 0 24px 50px rgba(18, 50, 97, 0.22);
+      border: 4px solid #fff0a8;
+    }
+
+    .welcome-layout {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .duck {
+      position: relative;
+      width: 150px;
+      height: 170px;
+      margin: 0 auto;
+      animation: floaty 1.8s ease-in-out infinite;
+    }
+
+    @keyframes floaty {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    .duck-head {
+      position: absolute;
+      top: 0;
+      left: 28px;
+      width: 94px;
+      height: 90px;
+      border-radius: 50%;
+      background: #fff8e8;
+      border: 4px solid #123261;
+    }
+
+    .duck-eye {
+      position: absolute;
+      top: 28px;
+      width: 15px;
+      height: 20px;
+      border-radius: 50%;
+      background: white;
+      border: 3px solid #123261;
+    }
+
+    .duck-eye.left {
+      left: 46px;
+    }
+
+    .duck-eye.right {
+      left: 76px;
+    }
+
+    .duck-eye::after {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 6px;
+      width: 5px;
+      height: 8px;
+      border-radius: 50%;
+      background: #123261;
+    }
+
+    .duck-beak {
+      position: absolute;
+      top: 48px;
+      left: 48px;
+      width: 58px;
+      height: 28px;
+      border-radius: 18px;
+      background: #ffb13b;
+      border: 4px solid #123261;
+    }
+
+    .duck-body {
+      position: absolute;
+      top: 78px;
+      left: 20px;
+      width: 110px;
+      height: 84px;
+      border-radius: 28px;
+      background: #2f83ef;
+      border: 4px solid #123261;
+    }
+
+    .duck-wing {
+      position: absolute;
+      top: 100px;
+      left: 8px;
+      width: 34px;
+      height: 48px;
+      border-radius: 20px;
+      background: #fff8e8;
+      border: 4px solid #123261;
+      transform: rotate(20deg);
+    }
+
+    .duck-wing.right {
+      left: auto;
+      right: 8px;
+      transform: rotate(-20deg);
+    }
+
+    .duck-feet {
+      position: absolute;
+      bottom: 0;
+      left: 36px;
+      width: 76px;
+      height: 18px;
+      border-radius: 18px;
+      background: #ffb13b;
+      border: 4px solid #123261;
+    }
+
+    .welcome-card h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+    }
+
+    .welcome-card p {
+      margin: 0 0 16px;
+      line-height: 1.5;
+      font-size: 1.05rem;
+    }
+
+    .game-shell.hidden {
+      display: none;
+    }
+
     .hero {
       text-align: center;
       margin-bottom: 22px;
@@ -393,6 +543,7 @@
     }
 
     @media (max-width: 640px) {
+      .welcome-layout,
       .student-form,
       .tip-box,
       .choices,
@@ -407,7 +558,48 @@
   </style>
 </head>
 <body>
-  <div class="page">
+  <div class="welcome-screen" id="welcomeScreen">
+    <div class="welcome-card">
+      <div class="welcome-layout">
+        <div class="duck" aria-hidden="true">
+          <div class="duck-head"></div>
+          <div class="duck-eye left"></div>
+          <div class="duck-eye right"></div>
+          <div class="duck-beak"></div>
+          <div class="duck-body"></div>
+          <div class="duck-wing"></div>
+          <div class="duck-wing right"></div>
+          <div class="duck-feet"></div>
+        </div>
+        <div>
+          <h2>Hello, little creator.</h2>
+          <p>
+            Your duck guide is here to welcome you. Tell me your name and class, and then we will start building a fun school website together.
+          </p>
+          <div class="student-form">
+            <div>
+              <label for="studentName">Student Name</label>
+              <input id="studentName" type="text" placeholder="Aarav">
+            </div>
+            <div>
+              <label for="studentAge">Age</label>
+              <input id="studentAge" type="number" min="6" max="9" placeholder="7">
+            </div>
+            <div>
+              <label for="studentClass">Class</label>
+              <input id="studentClass" type="text" placeholder="Grade 2">
+            </div>
+          </div>
+          <div class="message" id="welcomeMessage">Please fill your details to begin the game.</div>
+          <div class="actions">
+            <button class="primary-btn" id="enterBtn">Start Adventure</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page game-shell hidden" id="gameShell">
     <section class="hero">
       <h1>Website Builder Challenge</h1>
       <p>
@@ -418,21 +610,8 @@
 
     <div class="grid">
       <section class="card">
-        <h2>Player Details</h2>
-        <div class="student-form">
-          <div>
-            <label for="studentName">Student Name</label>
-            <input id="studentName" type="text" placeholder="Aarav">
-          </div>
-          <div>
-            <label for="studentAge">Age</label>
-            <input id="studentAge" type="number" min="6" max="9" placeholder="7">
-          </div>
-          <div>
-            <label for="studentClass">Class</label>
-            <input id="studentClass" type="text" placeholder="Grade 2">
-          </div>
-        </div>
+        <h2 id="playerTitle">Player Details</h2>
+        <p id="playerSummary">Your details will appear here after the welcome screen.</p>
 
         <div class="tip-box">
           <div class="tip html">
@@ -474,12 +653,12 @@
           <div class="choices" id="choicesBox"></div>
 
           <div class="message" id="messageBox">
-            Type your name and then press <strong>Start Game</strong>.
+            The game will begin right after the welcome screen.
           </div>
 
           <div class="actions">
-            <button class="primary-btn" id="startBtn">Start Game</button>
             <button class="secondary-btn" id="nextBtn" disabled>Next Question</button>
+            <button class="primary-btn" id="playAgainBtn" style="display:none;">Play Again</button>
           </div>
         </div>
       </section>
@@ -569,14 +748,20 @@
     const studentName = document.getElementById("studentName");
     const studentAge = document.getElementById("studentAge");
     const studentClass = document.getElementById("studentClass");
+    const welcomeScreen = document.getElementById("welcomeScreen");
+    const gameShell = document.getElementById("gameShell");
+    const welcomeMessage = document.getElementById("welcomeMessage");
+    const enterBtn = document.getElementById("enterBtn");
+    const playerTitle = document.getElementById("playerTitle");
+    const playerSummary = document.getElementById("playerSummary");
     const roundTitle = document.getElementById("roundTitle");
     const questionText = document.getElementById("questionText");
     const choicesBox = document.getElementById("choicesBox");
     const messageBox = document.getElementById("messageBox");
     const scorePill = document.getElementById("scorePill");
     const progressPill = document.getElementById("progressPill");
-    const startBtn = document.getElementById("startBtn");
     const nextBtn = document.getElementById("nextBtn");
+    const playAgainBtn = document.getElementById("playAgainBtn");
     const historyBox = document.getElementById("historyBox");
     const previewTagline = document.getElementById("previewTagline");
     const previewPanel1 = document.getElementById("previewPanel1");
@@ -588,6 +773,7 @@
     let currentRound = 0;
     let score = 0;
     let answered = false;
+    let gameUnlocked = false;
 
     function getStorageData() {
       try {
@@ -635,6 +821,8 @@
     function updatePreview() {
       const player = studentName.value.trim() || "our students";
       previewTagline.textContent = "Welcome to the website made by " + player + ".";
+      playerTitle.textContent = player ? player + "'s Details" : "Player Details";
+      playerSummary.textContent = "Age: " + (studentAge.value.trim() || "-") + " | Class: " + (studentClass.value.trim() || "Not added");
 
       if (score >= 2) {
         previewPanel1.innerHTML = "<strong>About Us</strong><p>We are learning how HTML adds headings, words, and pictures.</p>";
@@ -652,6 +840,28 @@
     function setMascotMood(mood, text) {
       mascot.className = "mascot bounce " + mood;
       mascotText.textContent = text;
+    }
+
+    function unlockGame() {
+      const name = studentName.value.trim();
+      const age = studentAge.value.trim();
+      const className = studentClass.value.trim();
+
+      if (!name || !age || !className) {
+        welcomeMessage.className = "message oops";
+        welcomeMessage.textContent = "Please add name, age, and class before starting.";
+        return;
+      }
+
+      welcomeScreen.classList.add("hidden");
+      gameShell.classList.remove("hidden");
+      gameUnlocked = true;
+      updatePreview();
+      currentRound = 0;
+      score = 0;
+      playAgainBtn.style.display = "none";
+      setMascotMood("happy", "Hello " + name + ". Let's build a great school website together.");
+      loadRound();
     }
 
     function loadRound() {
@@ -754,13 +964,14 @@
         score + " out of " + rounds.length + ". Now ask yourself: what page would you add to your school website?";
       setMascotMood("win", "Amazing work. Your school website ideas are shining bright.");
       nextBtn.disabled = true;
-      startBtn.textContent = "Play Again";
+      playAgainBtn.style.display = "inline-block";
     }
 
-    startBtn.addEventListener("click", () => {
+    playAgainBtn.addEventListener("click", () => {
       currentRound = 0;
       score = 0;
       updatePreview();
+      playAgainBtn.style.display = "none";
       setMascotMood("happy", "Let's play. Pick the best answer to build your school website.");
       loadRound();
     });
@@ -774,9 +985,10 @@
       }
     });
 
+    enterBtn.addEventListener("click", unlockGame);
+
     renderHistory();
     updatePreview();
-    setMascotMood("happy", "Hi friend. Type your name and let's build a fun school website together.");
     questionText.textContent = "This game teaches children how HTML adds content and CSS makes it beautiful.";
   </script>
 </body>
