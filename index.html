@@ -536,6 +536,62 @@
       font-size: 0.95rem;
     }
 
+    .site-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.92);
+      border: 3px solid rgba(35, 116, 225, 0.12);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      z-index: 21;
+    }
+
+    .site-footer.game-active {
+      position: static;
+      margin: 28px auto 0;
+      z-index: auto;
+    }
+
+    .site-footer h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+    }
+
+    .site-footer p {
+      margin: 0 0 14px;
+      line-height: 1.5;
+    }
+
+    .student-projects {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .student-projects a {
+      display: inline-flex;
+      align-items: center;
+      min-height: 48px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #2374e1 0%, #5ca2ff 100%);
+      color: #fff;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 10px 22px rgba(35, 116, 225, 0.22);
+    }
+
+    .student-projects a:hover,
+    .student-projects a:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 26px rgba(35, 116, 225, 0.28);
+    }
+
     @media (max-width: 900px) {
       .grid {
         grid-template-columns: 1fr;
@@ -558,7 +614,7 @@
   </style>
 </head>
 <body>
-  <a href="index-1.html">School Webpage</a>
+
   <div class="welcome-screen" id="welcomeScreen">
     <div class="welcome-card">
       <div class="welcome-layout">
@@ -856,6 +912,7 @@
 
       welcomeScreen.classList.add("hidden");
       gameShell.classList.remove("hidden");
+      document.querySelector(".site-footer").classList.add("game-active");
       gameUnlocked = true;
       updatePreview();
       currentRound = 0;
@@ -877,6 +934,7 @@
       welcomeMessage.textContent = "Please fill your details to begin the game.";
       welcomeScreen.classList.remove("hidden");
       gameShell.classList.add("hidden");
+      document.querySelector(".site-footer").classList.remove("game-active");
       playAgainBtn.style.display = "none";
       nextBtn.disabled = true;
       choicesBox.innerHTML = "";
@@ -1016,5 +1074,14 @@
     updatePreview();
     questionText.textContent = "This game teaches children how HTML adds content and CSS makes it beautiful.";
   </script>
+
+  <footer class="site-footer">
+    <h2>Students Projects</h2>
+    <p>Visit the school webpages created by students after playing the game.</p>
+    <div class="student-projects" id="studentProjects">
+      <a href="PMC 52 Girls School/index.html">PMC 52 Girls School Webpage</a>
+      <a href="Veer Bajiprabhu Vidhalay 90b/index.html">Veer Bajiprabhu Vidhalay 90 School Webpage</a>
+    </div>
+  </footer>
 </body>
 </html>
