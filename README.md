@@ -6,7 +6,7 @@ An interactive, game-based learning platform designed to engage underprivileged 
 
 ## About This Project
 
-**Purpose:** This project is a collaborative initiative between [Morgan Stanley](https://www.morganstanley.com/) and [PiJam NGO](https://pijam.org/) to engage and inspire underprivileged students, helping them discover the exciting field of computer science and web development.
+**Purpose:** This project is a collaborative initiative between [Morgan Stanley](https://www.morganstanley.com/) and [Pi Jam Foundation](https://www.thepijam.org/) to engage and inspire underprivileged students, helping them discover the exciting field of computer science and web development.
 
 ### Our Approach
 We believe in **engagement through interactive learning**. Rather than traditional classroom education, we create fun, game-based experiences that:
@@ -22,15 +22,26 @@ We believe in **engagement through interactive learning**. Rather than tradition
 
 ---
 
-## About PiJam NGO
+## About Pi Jam Foundation
 
-**PiJam** is a non-governmental organization committed to democratizing technology access and education for underserved communities. Through innovative programs and partnerships, PiJam works to:
-- Bridge the digital divide
-- Provide quality tech exposure to students in economically disadvantaged areas
-- Foster creativity and problem-solving skills
-- Create pathways to career opportunities in technology
+**Pi Jam Foundation** is a non-profit organization (registered under Section 8 of the Indian Companies Act 2013) established in September 2017. With a mission to democratize technology access and education across India, Pi Jam works to:
 
-For more information, visit [PiJam's website](https://pijam.org/).
+- **Bridge the Digital Divide** - Address the reality that 87% of schools in India lack computer access
+- **Enhance Computer Science Education** - Develop innovative curricula that foster programming, problem-solving, and design thinking
+- **Empower Young Minds** - Provide hands-on STEM learning experiences through workshops, Pi Labs, and community projects
+- **Build Future Leaders** - Create pathways to technology careers for students in underserved communities
+
+### Key Initiatives:
+- **Workshops** - Week-long or bi-weekly intensive STEM experiences with challenging experiments
+- **Pi Labs** - Computing labs equipped with hardware, curriculum, and teacher training for sustained learning
+- **Weather Station Project** - 6-day workshops building automated weather stations for schools, contributing real data to the Indian Meteorological Department
+
+### Impact:
+- 92% of participating students want to pursue technology careers post-workshop
+- 75% of participants demonstrate medium-high proficiency in programming constructs
+- 66% of girls in Pi Jam workshops achieve highest scores in programming and problem-solving
+
+For more information, visit [Pi Jam Foundation's website](https://www.thepijam.org/).
 
 ---
 
@@ -247,9 +258,11 @@ Please contact the project maintainers for more information.
 
 ## Contact & Support
 
-### PiJam NGO
-- Website: [pijam.org](https://pijam.org/)
-- Mission: Democratizing technology education for underprivileged communities
+### Pi Jam Foundation
+- Website: [www.thepijam.org](https://www.thepijam.org/)
+- Mission: Equipping students and educators of India with access to affordable technology and enhanced quality of Computer Science education
+- Established: September 2017
+- Legal Status: Registered Non-Profit Organization (Section 8, Indian Companies Act 2013)
 
 ### Morgan Stanley Global Volunteering Movement
 - Learn more about Morgan Stanley's community initiatives
@@ -260,10 +273,11 @@ Please contact the project maintainers for more information.
 ## Acknowledgments
 
 Special thanks to:
-- **PiJam NGO** for the vision and community connection
-- **Morgan Stanley** and its Global Volunteering Movement for support and resources
-- The students at PMC 52 Girls School and Veer Bajiprabhu Vidhalay for inspiring this project
-- All educators and volunteers making tech education accessible
+- **Pi Jam Foundation** for the vision, mission, and community connection
+- **Morgan Stanley** and its Global Volunteering Movement for support, resources, and volunteer expertise
+- The educators and students at PMC 52 Girls School and Veer Bajiprabhu Vidhalay for inspiring this project
+- All teachers and volunteers making quality tech education accessible to underprivileged communities
+- The thousands of students across India gaining exposure to computer science through Pi Jam's programs
 
 ---
 
