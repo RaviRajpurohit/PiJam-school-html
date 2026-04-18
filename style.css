@@ -1,0 +1,62 @@
+/* Basic reset */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Header styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #2c3e50;
+    color: white;
+    padding: 10px;
+}
+
+/* Center title */
+.title {
+    text-align: center;
+    flex: 1;
+}
+
+/* Navigation links */
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+/* Hamburger */
+.hamburger {
+    cursor: pointer;
+}
+
+/* Hidden menu */
+.menu {
+    display: none;
+    background: #34495e;
+    padding: 10px;
+}
+
+.menu a {
+    display: block;
+    color: white;
+    margin: 5px 0;
+}
+
+/* Card style */
+.card {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+/* Footer */
+footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
